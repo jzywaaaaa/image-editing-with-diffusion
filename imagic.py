@@ -76,14 +76,14 @@ def decode_to_im(samples, im_name, n_samples=1, nrow=1):
 
 # Paths and prompt
 device = "cuda:0"
-config="./configs/stable-diffusion/v1-inference.yaml"
-ckpt = "./sd-v1-4-full-ema.ckpt"
+config="configs/stable-diffusion/v1-inference.yaml"
+ckpt = "sd-v1-4-full-ema.ckpt"
 #ckpt = "models/ldm/stable-diffusion-v1"
 #input_image = "im-examples/Official_portrait_of_Barack_Obama.jpg"
 import os
 num = 0
 import json  
-with open('./tedbench/input_list.json', 'r') as file:  
+with open('tedbench/input_list.json', 'r') as file:  
     data = json.load(file) 
     for info in data:
         input_image = info['img_name']

@@ -105,12 +105,16 @@ with open('tedbench/input_list.json', 'r') as file:
         ddim_eta=0.0
         torch.manual_seed(0)
 
+        print('going to load model from config')
         model = load_model_from_config(config, ckpt, device)
+        print('model loaded from config')
         sampler = DDIMSampler(model)
+        print('sampler created')
 
         init_image = load_img(input_image).to(device).unsqueeze(0)
         init_latent = model.get_first_stage_encoding(model.encode_first_stage(init_image))
         decode_to_im(init_latent, name+'original.jpg')
+        print('initial stage encoding done')
 
         orig_emb = model.get_learned_conditioning([prompt])
         emb = orig_emb.clone()

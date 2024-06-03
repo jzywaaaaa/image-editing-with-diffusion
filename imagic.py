@@ -22,13 +22,20 @@ def load_model_from_config(config, ckpt, device="cpu", verbose=False):
         config = OmegaConf.load(config)
 
     pl_sd = torch.load(ckpt, map_location="cpu")
+    print('torch load finished')
     global_step = pl_sd["global_step"]
     sd = pl_sd["state_dict"]
+    print('pl_sd steps done')
     model = instantiate_from_config(config.model)
+    print('model instantiated from config')
     m, u = model.load_state_dict(sd, strict=True)
+    print('loaded state dict into model')
     model.to(device)
+    print('model to device')
     model.eval()
+    print('model eval donw')
     model.cond_stage_model.device = device
+    print('model.cond_stage_model.device done')
     return model
 
 @torch.no_grad()

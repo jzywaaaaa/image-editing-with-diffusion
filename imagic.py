@@ -83,7 +83,7 @@ ckpt = "./sd-v1-4-full-ema.ckpt"
 import os
 num = 0
 import json  
-with open('tedbench/input_list.json', 'r') as file:  
+with open('./tedbench/input_list.json', 'r') as file:  
     data = json.load(file) 
     for info in data:
         input_image = info['img_name']
